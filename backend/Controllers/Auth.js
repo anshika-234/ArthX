@@ -14,7 +14,6 @@ module.exports.signup = async (req, res, next) => {
     const user = await newUser.save();
 
     const token = await secretToken(user._id);
-    console.log("RAW PASSWORD 👉", password);
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -48,7 +47,7 @@ module.exports.login = async (req, res, next) => {
       return next(new CustomError("Invalid email or password", 400));
     }
     let token = await secretToken(user._id);
-    console.log("LOGIN PASSWORD 👉", password);
+
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "lax",

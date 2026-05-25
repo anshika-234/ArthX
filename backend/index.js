@@ -28,19 +28,8 @@ app.use(
 app.use(cookieParser());
 app.use(passport.initialize());
 
-// log requests
-app.use((req, res, next) => {
-  console.log("➡️ Incoming:", req.method, req.originalUrl);
-  next();
-});
-
 app.use("/auth", authRoute);
 app.use("/dashboard", dashboardRoute);
-
-app.use((req, res, next) => {
-  console.log("➡️ Incoming:", req.method, req.originalUrl);
-  next();
-});
 
 app.use((req, res) => {
   res.status(404).send("Page not found");
@@ -52,8 +41,6 @@ app.use(errorHandler.errorHandler);
 mongoose
   .connect(url)
   .then(() => {
-    console.log("Mongodb is connected");
-    console.log("DB Name:", mongoose.connection.db.databaseName);
     app.listen(port, () => {
       console.log(`app is listening at ${port}`);
     });
