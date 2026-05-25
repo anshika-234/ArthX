@@ -8,25 +8,25 @@
 
 ## 📌 Table of Contents
 
-- [Description](#description)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation & Setup](#installation--setup)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [API Endpoints](#api-endpoints)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgments](#acknowledgments)
+- [Description](#-description)
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Installation & Setup](#-installation--setup)
+- [Usage](#-usage)
+- [Configuration](#-configuration)
+- [API Endpoints](#-api-endpoints)
+- [License](#-license)
+- [Contact](#-contact)
+- [Acknowledgments](#-acknowledgments)
 
 ---
 
 ## 📖 Description
 
-**ArthX** is a Zerodha-inspired stock trading dashboard built for investors who want a clean, simple interface to manage their portfolio. 
+**ArthX** is a Zerodha-inspired stock trading dashboard built for investors who want a clean, simple interface to manage their portfolio.
 
 ### What problem does it solve?
-Managing stocks across multiple platforms is messy. ArthX gives you one clean dashboard to track your holdings, monitor positions, place orders, and manage funds — all in one place. 
+Managing stocks across multiple platforms is messy. ArthX gives you one clean dashboard to track your holdings, monitor positions, place orders, and manage funds — all in one place.
 
 ### Who is this for?
 This project was built as a comprehensive **full-stack portfolio showcase**, demonstrating the ability to build complex, state-heavy dashboards, secure authentication, and RESTful APIs.
@@ -56,6 +56,7 @@ This project was built as a comprehensive **full-stack portfolio showcase**, dem
 
 ## 📁 Project Structure
 
+```
 📦 ArthX/
 │
 ├── 📂 frontend/                      # Landing page (Home, About, Pricing etc.)
@@ -118,68 +119,156 @@ This project was built as a comprehensive **full-stack portfolio showcase**, dem
     ├── util/
     │   ├── CustomError.js
     │   └── SecretToken.js
-    ├── index.js
-                        
+    └── index.js
+```
 
+---
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) v18+
+- [Git](https://git-scm.com/)
+- A [MongoDB Atlas](https://www.mongodb.com/atlas) account
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/anshika-234/ArthX.git
+cd ArthX
+```
+
+### 2. Backend Setup
+
+```bash
 # Terminal 1 - Backend
 cd backend
 npm install
 npm start
+# API running at http://localhost:4000
+```
 
-# Terminal 2 - Dashboard  
+### 3. Dashboard Setup
+
+```bash
+# Terminal 2 - Dashboard
 cd dashboard
 npm install
 npm start
+# Dashboard running at http://localhost:3001
+```
 
+### 4. Frontend Setup
+
+```bash
 # Terminal 3 - Frontend
 cd frontend
 npm install
 npm start
-# Server runs on http://localhost:4000
+# Landing page running at http://localhost:3000
+```
 
-1. Create an Account
-Open http://localhost:3000
-Register a new account and login.
-You will be redirected to the empty Dashboard.
-2. Place an Order (Add Data)
-Go to the Watchlist from the sidebar.
-Hover over any stock and click BUY.
-Enter the quantity and click "Confirm Order".
-The backend will process this, and you will now see data populated in your Holdings and Orders tabs!
+### 5. Verify Everything Works
 
+| Service | URL |
+|---------|-----|
+| Landing Page | http://localhost:3000 |
+| Dashboard | http://localhost:3001 |
+| Backend API | http://localhost:4000 |
+
+---
+
+## 🚀 Usage
+
+### 1. Create an Account
+- Open [http://localhost:3000](http://localhost:3000)
+- Register a new account and login
+- You will be redirected to the Dashboard with **pre-loaded sample data**
+
+### 2. Explore the Dashboard
+- 📊 **Holdings** — View your pre-loaded stock portfolio with P&L
+- 📉 **Positions** — Check your open positions
+- 💰 **Funds** — View margin and cash balance
+- 👀 **Watchlist** — Monitor stocks with price changes
+
+### 3. Place an Order
+- Go to **Watchlist** from the sidebar
+- Hover over any stock and click **BUY** or **SELL**
+- Enter the quantity and click **Confirm Order**
+- Order will appear in the **Orders** tab instantly!
+
+> **Note:** Database is pre-seeded with sample holdings data on MongoDB Atlas.
+> No manual data entry required after setup!
+
+---
+
+## 🔧 Configuration
+
+Create a `.env` file in the `backend/` directory:
+
+```env
 PORT=4000
 MONGO_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/fin-tech?appName=fin-tech
 SECRET=your_secret_key_here
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 GOOGLE_CALLBACK_URL=http://localhost:4000/auth/google/callback
+```
 
-📡 API Endpoints
-Auth Routes
-Method	Endpoint	Description
-POST	/auth/register	Register new user
-POST	/auth/login	Login user
-GET	/auth/logout	Logout user
-Dashboard Routes
-Method	Endpoint	Description
-GET	/dashboard/holdings	Get all holdings
-POST	/dashboard/holdings	Add a holding
-GET	/dashboard/orders	Get all orders
-POST	/dashboard/orders	Place new order
+> ⚠️ **Never push your `.env` file to GitHub!**
 
-📄 License
-This project is licensed under the MIT License.
+---
 
-📬 Contact
-Anshika Gupta
+## 📡 API Endpoints
 
-🐙 GitHub: @anshika-234
-💼 LinkedIn: https://www.linkedin.com/in/anshika-gupta-1495192a5
-📧 Email: rimigupta123456@gmail.com
-🙏 Acknowledgments
-Inspired by the UI/UX of Zerodha
-Charts powered by Chart.js
-Icons by Material UI
-Database hosted on MongoDB Atlas
-Authentication by Passport.js
+### Auth Routes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/signup` | Register new user |
+| POST | `/auth/login` | Login user |
+| GET | `/auth/logout` | Logout user |
+
+### Dashboard Routes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/dashboard/holdings` | Get all holdings |
+| POST | `/dashboard/holdings` | Add a holding |
+| GET | `/dashboard/orders` | Get all orders |
+| POST | `/dashboard/orders` | Place new order |
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Real-time stock price updates via WebSockets
+- [ ] Live NIFTY/SENSEX data from NSE API
+- [ ] Protected Routes (Auth guard)
+- [ ] Deploy on Vercel + Render
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 📬 Contact
+
+**Anshika Gupta**
+
+- 🐙 GitHub: [@anshika-234](https://github.com/anshika-234)
+- 💼 LinkedIn: [Anshika Gupta](https://www.linkedin.com/in/anshika-gupta-1495192a5)
+- 📧 Email: rimigupta123456@gmail.com
+
+---
+
+## 🙏 Acknowledgments
+
+- Inspired by the UI/UX of [Zerodha](https://zerodha.com)
+- Charts powered by [Chart.js](https://www.chartjs.org/)
+- Icons by [Material UI](https://mui.com/)
+- Database hosted on [MongoDB Atlas](https://www.mongodb.com/atlas)
+- Authentication by [Passport.js](http://www.passportjs.org/)
