@@ -56,43 +56,85 @@ This project was built as a comprehensive **full-stack portfolio showcase**, dem
 
 ## 📁 Project Structure
 
-```text
 📦 ArthX/
-├── 📂 frontend/
-│   └── src/
-│       ├── components/
-│       │   ├── Dashboard.jsx      # Main layout + routes
-│       │   ├── Menu.jsx           # Sidebar navigation
-│       │   ├── TopBar.jsx         # NIFTY/SENSEX top bar
-│       │   ├── Summary.jsx        # Dashboard home
-│       │   ├── Holdings.jsx       # Holdings table + chart
-│       │   ├── Orders.jsx         # Orders list
-│       │   ├── Positions.jsx      # Open positions
-│       │   ├── Funds.jsx          # Funds & margin
-│       │   ├── WatchList.jsx      # Watchlist + Buy/Sell
-│       │   ├── DoughnutChart.jsx  # Pie chart
-│       │   └── VerticalGraph.jsx  # Bar chart
-│       └── data/
-│           └── data.js            # Mock frontend data
 │
-└── 📂 backend/
-    ├── routes/
-    │   ├── Auth.js                # Login/Signup routes
-    │   └── Dashboard.js           # Holdings/Orders routes
-    ├── controllers/
-    │   └── Dashboard.js           # Business logic
-    ├── model/
-    │   ├── Holding.js             # Holdings model
-    │   └── Order.js               # Orders model
+├── 📂 frontend/                      # Landing page (Home, About, Pricing etc.)
+│   └── src/
+│       ├── context/
+│       │   └── AuthContext.js        # Global auth state
+│       └── landing_page/
+│           ├── home/                 # Home page sections
+│           ├── about/                # About page
+│           ├── pricing/              # Pricing page
+│           ├── products/             # Products page
+│           ├── signup/               # Signup page
+│           ├── support/              # Support page
+│           ├── Navbar.js
+│           ├── Footer.js
+│           └── Login.js
+│
+├── 📂 dashboard/                     # Trading dashboard (after login)
+│   └── src/
+│       ├── api/
+│       │   └── auth.js               # API calls
+│       ├── components/
+│       │   ├── Dashboard.js          # Main layout + routes
+│       │   ├── Menu.js               # Sidebar navigation
+│       │   ├── TopBar.js             # NIFTY/SENSEX bar
+│       │   ├── Holdings.js           # Holdings table + chart
+│       │   ├── Orders.js             # Orders list
+│       │   ├── Positions.js          # Open positions
+│       │   ├── Funds.js              # Funds & margin
+│       │   ├── WatchList.js          # Watchlist + Buy/Sell
+│       │   ├── DoughnutChart.js      # Pie chart
+│       │   └── VerticalGraph.js      # Bar chart
+│       └── data/
+│           └── data.js               # Static seed data
+│
+└── 📂 backend/                       # REST API server
     ├── config/
-    │   └── passport.js            # Passport config
-    └── server.js                  # Entry point
+    │   └── passport.js               # Passport config
+    ├── Controllers/
+    │   ├── Auth.js                   # Auth logic
+    │   ├── Dashboard.js              # Holdings/Orders logic
+    │   └── ErrorHandler.js           # Global error handler
+    ├── middleware/
+    │   └── AuthMiddleware.js         # Route protection
+    ├── model/
+    │   ├── Holding.js
+    │   ├── Order.js
+    │   ├── Position.js
+    │   ├── User.js
+    │   └── WatchList.js
+    ├── routes/
+    │   ├── Auth.js
+    │   └── Dashboard.js
+    ├── schemas/
+    │   ├── Holding.js
+    │   ├── Order.js
+    │   ├── Positions.js
+    │   ├── User.js
+    │   └── WatchList.js
+    ├── util/
+    │   ├── CustomError.js
+    │   └── SecretToken.js
+    ├── index.js
+                        
 
 git clone https://github.com/anshika-234/ArthX.git
-cd ArthX
+# Terminal 1 - Backend
+cd backend
+npm install
+npm start
+
+# Terminal 2 - Dashboard  
+cd dashboard
+npm install
+npm start
+
+# Terminal 3 - Frontend
 cd frontend
 npm install
-cd backend
 npm start
 # Server runs on http://localhost:4000
 
@@ -106,9 +148,12 @@ Hover over any stock and click BUY.
 Enter the quantity and click "Confirm Order".
 The backend will process this, and you will now see data populated in your Holdings and Orders tabs!
 
+PORT=4000
 MONGO_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/fin-tech?appName=fin-tech
 SECRET=your_secret_key_here
-PORT=4000
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_CALLBACK_URL=http://localhost:4000/auth/google/callback
 
 📡 API Endpoints
 Auth Routes
@@ -130,8 +175,8 @@ This project is licensed under the MIT License.
 Anshika Gupta
 
 🐙 GitHub: @anshika-234
-💼 LinkedIn: Your LinkedIn Profile
-📧 Email: your.email@example.com
+💼 LinkedIn: https://www.linkedin.com/in/anshika-gupta-1495192a5
+📧 Email: rimigupta123456@gmail.com
 🙏 Acknowledgments
 Inspired by the UI/UX of Zerodha
 Charts powered by Chart.js
