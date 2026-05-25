@@ -25,7 +25,6 @@ module.exports.holdings = async (req, res) => {
 
 module.exports.getHoldings = async (req, res) => {
   try {
-    console.log(Holdings.collection.name);
     const holdings = await Holdings.find({});
 
     res.status(200).json(holdings);
